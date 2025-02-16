@@ -49,3 +49,6 @@ tailor-price-predictor/
 🚧 Interactive GUI using Streamlit 🖥  
 🚧 Unit testing for database, preprocessing, and model 🔬  
 🚧 Complete documentation for project setup and usage 📄  
+
+## 📜 License
+This project is licensed under the LICENSE file. Please check the license file for details.
