@@ -8,22 +8,24 @@
 ## 📁 Project Structure
 ```
 tailor-price-predictor/
-├── src/                 # Main code for database, preprocessing, and model
-│   ├── database/        # Database-related files
-│   │   ├── connection.py # PostgreSQL connection
-│   │   ├── query.py      # Query handling
-│   ├── predict.py       # Prediction function
-│   ├── preprocessing.py # Preprocessing stage
-│   ├── train.py         # Model training
-├── streamlit_app/       # Streamlit application
-│   ├── app.py           # GUI for users
-├── test/                # Unit testing
-│   ├── test_database.py # Database connection testing
-│   ├── test_model.py    # Model testing
-│   ├── test_preprocessing.py # Preprocessing testing
-├── LICENSE              # Project license
-├── README.md            # Main project documentation
-├── requirements.txt     # List of dependencies
+├── .streamlit/
+│   ├── config.toml            # Streamlit configuration file
+├── app_modules/
+│   ├── __init__.py            # Module initialization
+│   ├── about.py               # About page module
+│   ├── prediction.py          # Price prediction logic
+│   ├── style.css              # Custom styling for the app
+├── src/                       
+│   ├── predict.py             # Prediction functions
+│   ├── preprocessing.py       # Data preprocessing logic
+│   ├── train.py               # Model training script
+├── test/                      
+│   ├── test_model.py          # Testing machine learning model
+│   ├── test_preprocessing.py  # Testing data preprocessing steps
+├── LICENSE                    # Project license file
+├── README.md                  # Project documentation
+├── requirements.txt           # Dependencies and libraries
+├── streamlit_app.py           # Main Streamlit application
 ```
 
 ## 🚀 Installation & Usage (Under Development)
@@ -43,11 +45,10 @@ tailor-price-predictor/
    ```
 
 ## 🛠 Planned Features
-🚧 Connect to PostgreSQL to retrieve data 📊  
 🚧 Data preprocessing (normalization, encoding) 🔄  
 🚧 Train a machine learning model for price prediction 📈  
 🚧 Interactive GUI using Streamlit 🖥  
-🚧 Unit testing for database, preprocessing, and model 🔬  
+🚧 Unit testing for preprocessing and model 🔬  
 🚧 Complete documentation for project setup and usage 📄  
 
 ## 📜 License
