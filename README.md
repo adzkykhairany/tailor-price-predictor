@@ -41,7 +41,7 @@ tailor-price-predictor/
    ```
 3. Run the Streamlit application (currently in development):
    ```bash
-   streamlit run streamlit_app/app.py
+   streamlit run streamlit_app.py
    ```
 
 ## 🛠 Planned Features
