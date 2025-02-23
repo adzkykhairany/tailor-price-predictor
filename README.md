@@ -16,12 +16,10 @@ tailor-price-predictor/
 │   ├── prediction.py          # Price prediction logic
 │   ├── style.css              # Custom styling for the app
 ├── src/                       
-│   ├── predict.py             # Prediction functions
-│   ├── preprocessing.py       # Data preprocessing logic
-│   ├── train.py               # Model training script
-├── test/                      
-│   ├── test_model.py          # Testing machine learning model
-│   ├── test_preprocessing.py  # Testing data preprocessing steps
+│   ├── predict.ipynb          # Prediction functions
+│   ├── preprocessing.ipynb    # Data preprocessing logic
+│   ├── training.ipynb         # Model training script
+│   ├── testing.ipynb          # Testing machine learning model
 ├── LICENSE                    # Project license file
 ├── README.md                  # Project documentation
 ├── requirements.txt           # Dependencies and libraries
