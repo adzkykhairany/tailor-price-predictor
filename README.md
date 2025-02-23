@@ -45,10 +45,10 @@ tailor-price-predictor/
    ```
 
 ## 🛠 Planned Features
-🚧 Data preprocessing (normalization, encoding) 🔄  
-🚧 Train a machine learning model for price prediction 📈  
+🚧 Data preprocessing (encoding) 🔄  
+🚧 Train machine learning model for price prediction 📈  
+🚧 Unit testing for model 🔬 
 🚧 Interactive GUI using Streamlit 🖥  
-🚧 Unit testing for preprocessing and model 🔬  
 🚧 Complete documentation for project setup and usage 📄  
 
 ## 📜 License
