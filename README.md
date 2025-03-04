@@ -15,6 +15,8 @@ tailor-price-predictor/
 │   ├── about.py               # About page module
 │   ├── prediction.py          # Price prediction logic
 │   ├── style.css              # Custom styling for the app
+├── data/
+├── models/
 ├── src/                       
 │   ├── predict.ipynb          # Prediction functions
 │   ├── preprocessing.ipynb    # Data preprocessing logic
