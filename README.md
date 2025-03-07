@@ -14,14 +14,10 @@ tailor-price-predictor/
 │   ├── __init__.py            # Module initialization
 │   ├── about.py               # About page module
 │   ├── prediction.py          # Price prediction logic
-│   ├── style.css              # Custom styling for the app
-├── data/
-├── models/
-├── src/                       
-│   ├── predict.ipynb          # Prediction functions
-│   ├── preprocessing.ipynb    # Data preprocessing logic
-│   ├── training.ipynb         # Model training script
-│   ├── testing.ipynb          # Testing machine learning model
+│   ├── style.css              # CSS styles for the app
+├── data/                      # Directory for storing datasets
+├── models/                    # Directory for storing trained models
+├── src/                       # Source code for model
 ├── LICENSE                    # Project license file
 ├── README.md                  # Project documentation
 ├── requirements.txt           # Dependencies and libraries
