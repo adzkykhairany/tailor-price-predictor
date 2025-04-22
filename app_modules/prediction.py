@@ -77,9 +77,9 @@ def show():
 
         if not errors:
             # Mapping untuk input pengguna
-            mapping_model = {"Kebaya Tradisional": "kebaya tradisional", "Kebaya Modern": "kebaya modern", "Blus": "blus", "Midi Dress": "midi dress", "Maxi Dress": "maxi dress"}
-            mapping_bahan = {"Katun": "katun", "Sutra": "sutra", "Brokat": "brokat", "Sifon": "sifon", "Satin": "satin"}
-            mapping_ornamen = {"Tanpa Ornamen": "none", "Bordir": "bordir", "Renda": "renda", "Lipitan": "opneisel", "Payet": "payet"}
+            mapping_model = {"Kebaya Tradisional": "Kebaya Tradisional", "Kebaya Modern": "Kebaya Modern", "Blus": "Blus", "Midi Dress": "Midi Dress", "Maxi Dress": "Maxi Dress"}
+            mapping_bahan = {"Katun": "Katun", "Sutra": "Sutra", "Brokat": "Brokat", "Sifon": "Sifon", "Satin": "Satin"}
+            mapping_ornamen = {"Tanpa Ornamen": "None", "Bordir": "Bordir", "Renda": "Renda", "Lipitan": "Opneisel", "Payet": "Payet"}
 
             # Input untuk model prediksi
             X_input = pd.DataFrame([{
