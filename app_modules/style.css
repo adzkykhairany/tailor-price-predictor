@@ -1,15 +1,26 @@
 /* error input */
 p.error-message {
-    color:red; 
-    font-size:12px;
+    color: red; 
+    font-size: 12px;
+    margin-top: -15px;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.p {
+    font-size: 12px;
+}
+
+.justified-text {
+    text-align: justify;
 }
 
 .copyright {
-    margin-top:30px; 
+    margin-top: 30px; 
     font-size: 12px; 
     color: gray;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 /* Menghilangkan jarak antara elemen dalam container input */
@@ -26,3 +37,4 @@ div [data-testid="stBaseButton-secondaryFormSubmit"] {
     font-weight: bold; 
     transition: 0.3s;
 }
+

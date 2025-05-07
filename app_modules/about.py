@@ -1,22 +1,13 @@
 import streamlit as st
 
-def show():
-    st.title("ℹ️ Tentang Aplikasi")
+def load_css():
+    with open("app_modules/style.css", "r") as f:
+        css = f.read()
+        st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
-    st.write(
-        """
-        Aplikasi ini dirancang untuk membantu pengguna memperkirakan harga jasa jahit berdasarkan beberapa faktor utama, yaitu **model pakaian, jenis bahan, ornamen tambahan, waktu penyelesaian, dan pengalaman penjahit**. Dengan mempertimbangkan aspek-aspek tersebut, aplikasi ini memberikan estimasi harga yang dapat digunakan sebagai referensi sebelum memesan jasa jahit.
+st.title("Tentang Aplikasi")
+st.markdown('<div class="justified-text">Aplikasi ini dirancang untuk membantu pengguna memperkirakan harga jasa dan estimasi waktu pengerjaan layanan jahit, berdasarkan beberapa faktor utama, yaitu <b>Model Pakaian, Jenis Bahan, Ornamen Tambahan</b>. Dengan mempertimbangkan aspek-aspek tersebut, aplikasi ini memberikan estimasi harga dan waktu pengerjaan yang dapat digunakan sebagai referensi sebelum menggunakan jasa jahit.', unsafe_allow_html=True)
 
-        Data yang digunakan dalam aplikasi ini dikembangkan dengan metode **Multiple Linear Regression** untuk memprediksi harga berdasarkan pola yang ditemukan dalam data. Sumber data berasal dari hasil survei terhadap **10 dari 105 pelaku usaha jahit jenis tailor** yang beroperasi di **Pasar Sunan Giri, Rawamangun, Jakarta Timur**.
-        """
-    )
+st.markdown('<div><br></div>', unsafe_allow_html=True)
 
-
-    st.markdown(
-        """
-        <div class="copyright">
-        © 2025 Athiyya Adzky Khairany
-        </div>
-        """, 
-        unsafe_allow_html=True
-    )    
+st.markdown('<div class="justified-text">Data yang digunakan dalam aplikasi ini dikembangkan menggunakan metode <b>Multiple Linear Regression</b> dengan pendekatan <i>multi-output</i>. Model ini memungkinkan prediksi simultan terhadap harga dan waktu pengerjaan berdasarkan pola yang ditemukan dalam data. Sumber data berasal dari hasil survei terhadap <b>10 dari 105 pelaku usaha jahit jenis tailor</b> yang beroperasi di <b>Pasar Sunan Giri, Rawamangun, Jakarta Timur</b>.</div>', unsafe_allow_html=True)

@@ -3,92 +3,159 @@ import numpy as np
 import joblib
 import pandas as pd
 
-# Load models
-rf_model = joblib.load('models/model.pkl')
-
+# Load CSS for custom styling first to memastikan semua styling diterapkan
 def load_css():
-    with open("app_modules/style.css", "r") as f:  # Pastikan path ke style.css benar
+    with open("app_modules/style.css", "r") as f:
         css = f.read()
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
 load_css()
 
-def show():
-    st.title("👗 Prediksi Harga Jasa Jahit")
+# Load models and statistics from .pkl
+loaded = joblib.load('models/model_akhir.pkl')
+model = loaded['model_predict']  # Extract the model from the dictionary
 
-    # Sidebar Panduan
-    st.sidebar.header("📌 Panduan Pengisian")
-    st.sidebar.info(
-        "1️⃣ Isi semua kolom input sesuai dengan kebutuhan jahitan Anda.\n\n"
-        "2️⃣ Klik tombol **🎯 Hitung Perkiraan Harga** untuk mendapatkan estimasi biaya."
+# Title dan deskripsi
+st.title("Model Prediksi")
+st.write(
+    "Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan.")
+
+# Sidebar Panduan
+st.sidebar.header(":material/keep: Panduan Pengisian")
+st.sidebar.info(
+    ":material/looks_one: Isi semua kolom input sesuai dengan kebutuhan jahitan Anda.\n\n"
+    ":material/looks_two: Klik tombol **Hitung Perkiraan** untuk mendapatkan estimasi biaya dan waktu."
+)
+
+# Initialize session states
+if 'form_submitted' not in st.session_state:
+    st.session_state.form_submitted = False
+if 'prediction_done' not in st.session_state:
+    st.session_state.prediction_done = False
+
+# Function to predict price
+def predict_price(model, model_input, bahan_input, ornamen_input):
+    # Buat DataFrame input
+    df_input = pd.DataFrame([{
+        'model': model_input,
+        'bahan': bahan_input,
+        'ornamen': ornamen_input
+    }])
+
+    # Prediksi
+    pred = model.predict(df_input)[0]
+    waktu_mean = pred[0]
+    harga_mean = pred[1]
+
+    # Format hasil
+    return int(round(waktu_mean)), int(round(harga_mean))
+
+# Function to handle form submission
+def handle_submit():
+    st.session_state.form_submitted = True
+
+with st.form("input_form"):
+    model_input = st.selectbox(
+        "👗 Model Pakaian", 
+        ["Pilih Model Pakaian", "Kebaya Tradisional", "Kebaya Modern", "Blus", "Midi Dress", "Maxi Dress"],
+        index=0,
+        help="Pilih model pakaian yang sesuai dengan kebutuhan Anda."
+    )
+    # Display error only if form was submitted and input is invalid
+    if st.session_state.form_submitted and model_input == "Pilih Model Pakaian":
+        st.markdown('<p class="error-message">⚠ Harap pilih model pakaian.</p>', unsafe_allow_html=True)
+
+    bahan_input = st.selectbox(
+        "🧵 Jenis Bahan", 
+        ["Pilih Jenis Bahan", "Katun", "Sutra", "Brokat", "Sifon", "Satin"],
+        index=0,
+        help="Pilih jenis bahan yang akan digunakan."
+    )
+    # Display error only if form was submitted and input is invalid
+    if st.session_state.form_submitted and bahan_input == "Pilih Jenis Bahan":
+        st.markdown('<p class="error-message">⚠ Harap pilih jenis bahan.</p>', unsafe_allow_html=True)
+
+    ornamen_input = st.selectbox(
+        "✨ Ornamen Tambahan", 
+        ["Pilih Ornamen", "Tanpa Ornamen", "Bordir Kecil", "Bordir Sedang", "Bordir Besar", "Bordir Tempel", 
+         "Renda", "Opneisel Tertutup", "Opneisel Terbuka", "Payet Aksen Kecil", "Payet Aksen Sedang", 
+         "Payet Aksen Besar", "Payet Motif Sedang", "Payet Motif Besar"],
+        index=0,
+        help="Pilih ornamen tambahan untuk pakaian Anda."
+    )
+    # Display error only if form was submitted and input is invalid
+    if st.session_state.form_submitted and ornamen_input == "Pilih Ornamen":
+        st.markdown('<p class="error-message">⚠ Harap pilih ornamen tambahan.</p>', unsafe_allow_html=True)
+
+    submit = st.form_submit_button(
+        "Hitung Perkiraan", 
+        help="Klik untuk menghitung estimasi biaya dan waktu.",
+        use_container_width=True, 
+        type="primary",
+        on_click=handle_submit
     )
 
-    errors = {} 
+# Process form submission - move outside the form
+if st.session_state.form_submitted and not st.session_state.prediction_done:
+    errors = {}
+    
+    # Check for errors
+    if model_input == "Pilih Model Pakaian":
+        errors["model"] = True
+    if bahan_input == "Pilih Jenis Bahan":
+        errors["bahan"] = True
+    if ornamen_input == "Pilih Ornamen":
+        errors["ornamen"] = True
 
-    with st.form("input_form"):
-        col1, col2 = st.columns(2)
-        with col1:
-            model = st.selectbox("👗 Model Pakaian", 
-                                         ["Pilih Model Pakaian", "Kebaya Tradisional", "Kebaya Modern", "Blus", "Midi Dress", "Maxi Dress"],
-                                         index=0)
-            if model == "Pilih Model Pakaian":
-                errors["model"] = "⚠ Harap pilih model pakaian."
+    if not errors:
+        # Mapping untuk input pengguna
+        mapping_model = {
+            "Kebaya Tradisional": "Kebaya Tradisional", 
+            "Kebaya Modern": "Kebaya Modern", 
+            "Blus": "Blus", 
+            "Midi Dress": "Midi Dress", 
+            "Maxi Dress": "Maxi Dress"
+        }
+        mapping_bahan = {
+            "Katun": "Katun", 
+            "Sutra": "Sutra", 
+            "Brokat": "Brokat", 
+            "Sifon": "Sifon", 
+            "Satin": "Satin"
+        }
+        mapping_ornamen = {
+            "Tanpa Ornamen": "None", 
+            "Bordir Kecil": "Bordir Kecil", 
+            "Bordir Sedang": "Bordir Sedang", 
+            "Bordir Besar": "Bordir Besar", 
+            "Bordir Tempel": "Bordir Tempel", 
+            "Renda": "Renda", 
+            "Opneisel Tertutup": "Opneisel Tertutup", 
+            "Opneisel Terbuka": "Opneisel Terbuka", 
+            "Payet Aksen Kecil": "Payet Aksen Kecil", 
+            "Payet Aksen Sedang": "Payet Aksen Sedang", 
+            "Payet Aksen Besar": "Payet Aksen Besar", 
+            "Payet Motif Sedang": "Payet Motif Sedang", 
+            "Payet Motif Besar": "Payet Motif Besar"
+        }
 
-        with col2:
-            bahan = st.selectbox("🧵 Jenis Bahan", 
-                                       ["Pilih Jenis Bahan", "Katun", "Sutra", "Brokat", "Sifon", "Satin"],
-                                       index=0)
-            if bahan == "Pilih Jenis Bahan":
-                errors["bahan"] = "⚠ Harap pilih jenis bahan."
+        # Process prediction
+        with st.spinner("⏳ Sedang menghitung estimasi..."):
+            waktu, harga = predict_price(
+                model=model,
+                model_input=mapping_model[model_input],
+                bahan_input=mapping_bahan[bahan_input],
+                ornamen_input=mapping_ornamen[ornamen_input]
+            )
+            # Mark prediction as done to prevent multiple runs
+            st.session_state.prediction_done = True
 
-        col3, col4 = st.columns(2)
-        with col3:
-            ornamen = st.selectbox("✨ Ornamen Tambahan", 
-                                            ["Pilih Ornamen", "Tanpa Ornamen", "Bordir", "Renda", "Lipitan", "Payet"],
-                                            index=0)
-            if ornamen == "Pilih Ornamen":
-                errors["ornamen"] = "⚠ Harap pilih ornamen tambahan."
-
-        with col4:
-            waktu_pengerjaan = st.number_input("⏳ Waktu Penyelesaian (dalam hari)", min_value=1, step=1)
-        
-        # col5 = st.columns(1)[0]
-        # with col5:
-        #     model_pilih = st.selectbox("Pilih Model", ["Multiple Linear Regression", "Random Forest"])
-        
-        _, col_submit = st.columns([2, 1])
-        with col_submit:
-            submit = st.form_submit_button("🎯 Hitung Perkiraan Harga")
-
-    # show error
-    if submit:
-        with col1:
-            if "model" in errors:
-                st.markdown(f'<p class="error-message">{errors["model"]}</p>', unsafe_allow_html=True)
-        with col2:
-            if "bahan" in errors:
-                st.markdown(f'<p class="error-message">{errors["bahan"]}</p>', unsafe_allow_html=True)
-        with col3:
-            if "ornamen" in errors:
-                st.markdown(f'<p class="error-message">{errors["ornamen"]}</p>', unsafe_allow_html=True)
-        with col4:
-            if "waktu_pengerjaan" in errors:
-                st.markdown(f'<p class="error-message">{errors["waktu_pengerjaan"]}</p>', unsafe_allow_html=True)
-
-        if not errors:
-            # Mapping untuk input pengguna
-            mapping_model = {"Kebaya Tradisional": "Kebaya Tradisional", "Kebaya Modern": "Kebaya Modern", "Blus": "Blus", "Midi Dress": "Midi Dress", "Maxi Dress": "Maxi Dress"}
-            mapping_bahan = {"Katun": "Katun", "Sutra": "Sutra", "Brokat": "Brokat", "Sifon": "Sifon", "Satin": "Satin"}
-            mapping_ornamen = {"Tanpa Ornamen": "None", "Bordir": "Bordir", "Renda": "Renda", "Lipitan": "Opneisel", "Payet": "Payet"}
-
-            # Input untuk model prediksi
-            X_input = pd.DataFrame([{
-                "model": mapping_model[model],
-                "bahan": mapping_bahan[bahan],
-                "ornamen": mapping_ornamen[ornamen],
-                "waktu_pengerjaan": waktu_pengerjaan
-            }])
-                
-            pred = rf_model.predict(X_input)[0]
-            rentang = (int(pred - 100000), int(pred + 100000))
-            st.success(f"💸 Estimasi harga jasa jahit: Rp{rentang[0]:,} - Rp{rentang[1]:,}")
+        st.markdown(
+            f"""
+            <div style="background-color:#f0f8ff;padding:10px;border-radius:5px;">
+                🕒 <b>Estimasi waktu pengerjaan:</b> {waktu} hari<br>
+                💸 <b>Estimasi harga jasa:</b> Rp{harga:,}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )

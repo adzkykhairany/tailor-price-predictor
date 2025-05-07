@@ -1,5 +1,4 @@
 import streamlit as st
-import app_modules as app
 
 # read css file
 def load_css():
@@ -11,10 +10,24 @@ def load_css():
 load_css()
 
 # sidebar
-st.sidebar.title("🔖 Menu")
-page = st.sidebar.radio("Pilih Halaman", ["Tentang Aplikasi", "Prediksi Harga"])
+about_page = st.Page(
+    page="app_modules/about.py",
+    title="Tentang Aplikasi",
+    icon=":material/info:",
+    default=True
+)
 
-if page == "Prediksi Harga":
-    app.show_prediction()
-elif page == "Tentang Aplikasi":
-    app.show_about()
+prediction_page = st.Page(
+    page="app_modules/prediction.py",
+    title="Prediksi",
+    icon=":material/apparel:",
+) 
+
+pg = st.navigation(pages=[about_page, prediction_page])
+pg.run()
+
+# footer
+st.markdown(
+    "<hr><div class='copyright'>© 2025 Athiyya Adzky Khairany.</div>",
+    unsafe_allow_html=True
+)
