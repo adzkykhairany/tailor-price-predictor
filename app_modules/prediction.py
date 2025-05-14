@@ -30,11 +30,9 @@ st.sidebar.info(
 # Initialize session states
 if 'form_submitted' not in st.session_state:
     st.session_state.form_submitted = False
-if 'prediction_done' not in st.session_state:
-    st.session_state.prediction_done = False
 
 # Function to predict price
-def predict_price(model, model_input, bahan_input, ornamen_input):
+def predict(model, model_input, bahan_input, ornamen_input):
     # Buat DataFrame input
     df_input = pd.DataFrame([{
         'model': model_input,
@@ -54,7 +52,7 @@ def predict_price(model, model_input, bahan_input, ornamen_input):
 def handle_submit():
     st.session_state.form_submitted = True
 
-with st.form("input_form"):
+with st.form("input_form", clear_on_submit=False):
     model_input = st.selectbox(
         "👗 Model Pakaian", 
         ["Pilih Model Pakaian", "Kebaya Tradisional", "Kebaya Modern", "Blus", "Midi Dress", "Maxi Dress"],
@@ -96,7 +94,7 @@ with st.form("input_form"):
     )
 
 # Process form submission - move outside the form
-if st.session_state.form_submitted and not st.session_state.prediction_done:
+if st.session_state.form_submitted:
     errors = {}
     
     # Check for errors
@@ -141,14 +139,14 @@ if st.session_state.form_submitted and not st.session_state.prediction_done:
 
         # Process prediction
         with st.spinner("⏳ Sedang menghitung estimasi..."):
-            waktu, harga = predict_price(
+            waktu, harga = predict(
                 model=model,
                 model_input=mapping_model[model_input],
                 bahan_input=mapping_bahan[bahan_input],
                 ornamen_input=mapping_ornamen[ornamen_input]
             )
-            # Mark prediction as done to prevent multiple runs
-            st.session_state.prediction_done = True
+            # Reset the form_submitted state to allow for future submissions
+            st.session_state.form_submitted = False
 
         st.markdown(
             f"""
