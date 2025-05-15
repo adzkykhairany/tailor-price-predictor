@@ -20,10 +20,16 @@ about_page = st.Page(
 prediction_page = st.Page(
     page="app_modules/prediction.py",
     title="Prediksi",
-    icon=":material/apparel:",
+    icon=":material/batch_prediction:",
 ) 
 
-pg = st.navigation(pages=[about_page, prediction_page])
+catalog_page = st.Page(
+    page="app_modules/catalog.py",
+    title="Model Pakaian",
+    icon=":material/laundry:",
+)
+
+pg = st.navigation(pages=[about_page, catalog_page, prediction_page])
 pg.run()
 
 # footer

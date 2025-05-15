@@ -3,7 +3,6 @@ import numpy as np
 import joblib
 import pandas as pd
 
-# Load CSS for custom styling first to memastikan semua styling diterapkan
 def load_css():
     with open("app_modules/style.css", "r") as f:
         css = f.read()
@@ -11,44 +10,35 @@ def load_css():
 
 load_css()
 
-# Load models and statistics from .pkl
 loaded = joblib.load('models/model_akhir.pkl')
 model = loaded['model_predict']  # Extract the model from the dictionary
 
-# Title dan deskripsi
-st.title("Model Prediksi")
+st.title("Prediksi Harga & Waktu")
 st.write(
     "Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan.")
 
-# Sidebar Panduan
 st.sidebar.header(":material/keep: Panduan Pengisian")
 st.sidebar.info(
     ":material/looks_one: Isi semua kolom input sesuai dengan kebutuhan jahitan Anda.\n\n"
     ":material/looks_two: Klik tombol **Hitung Perkiraan** untuk mendapatkan estimasi biaya dan waktu."
 )
 
-# Initialize session states
 if 'form_submitted' not in st.session_state:
     st.session_state.form_submitted = False
 
-# Function to predict price
 def predict(model, model_input, bahan_input, ornamen_input):
-    # Buat DataFrame input
     df_input = pd.DataFrame([{
         'model': model_input,
         'bahan': bahan_input,
         'ornamen': ornamen_input
     }])
 
-    # Prediksi
     pred = model.predict(df_input)[0]
     waktu_mean = pred[0]
     harga_mean = pred[1]
 
-    # Format hasil
     return int(round(waktu_mean)), int(round(harga_mean))
 
-# Function to handle form submission
 def handle_submit():
     st.session_state.form_submitted = True
 
@@ -59,7 +49,7 @@ with st.form("input_form", clear_on_submit=False):
         index=0,
         help="Pilih model pakaian yang sesuai dengan kebutuhan Anda."
     )
-    # Display error only if form was submitted and input is invalid
+
     if st.session_state.form_submitted and model_input == "Pilih Model Pakaian":
         st.markdown('<p class="error-message">⚠ Harap pilih model pakaian.</p>', unsafe_allow_html=True)
 
@@ -69,7 +59,7 @@ with st.form("input_form", clear_on_submit=False):
         index=0,
         help="Pilih jenis bahan yang akan digunakan."
     )
-    # Display error only if form was submitted and input is invalid
+
     if st.session_state.form_submitted and bahan_input == "Pilih Jenis Bahan":
         st.markdown('<p class="error-message">⚠ Harap pilih jenis bahan.</p>', unsafe_allow_html=True)
 
@@ -81,7 +71,7 @@ with st.form("input_form", clear_on_submit=False):
         index=0,
         help="Pilih ornamen tambahan untuk pakaian Anda."
     )
-    # Display error only if form was submitted and input is invalid
+
     if st.session_state.form_submitted and ornamen_input == "Pilih Ornamen":
         st.markdown('<p class="error-message">⚠ Harap pilih ornamen tambahan.</p>', unsafe_allow_html=True)
 
@@ -93,11 +83,9 @@ with st.form("input_form", clear_on_submit=False):
         on_click=handle_submit
     )
 
-# Process form submission - move outside the form
 if st.session_state.form_submitted:
     errors = {}
     
-    # Check for errors
     if model_input == "Pilih Model Pakaian":
         errors["model"] = True
     if bahan_input == "Pilih Jenis Bahan":
@@ -106,7 +94,6 @@ if st.session_state.form_submitted:
         errors["ornamen"] = True
 
     if not errors:
-        # Mapping untuk input pengguna
         mapping_model = {
             "Kebaya Tradisional": "Kebaya Tradisional", 
             "Kebaya Modern": "Kebaya Modern", 
@@ -137,7 +124,6 @@ if st.session_state.form_submitted:
             "Payet Motif Besar": "Payet Motif Besar"
         }
 
-        # Process prediction
         with st.spinner("⏳ Sedang menghitung estimasi..."):
             waktu, harga = predict(
                 model=model,
@@ -145,7 +131,6 @@ if st.session_state.form_submitted:
                 bahan_input=mapping_bahan[bahan_input],
                 ornamen_input=mapping_ornamen[ornamen_input]
             )
-            # Reset the form_submitted state to allow for future submissions
             st.session_state.form_submitted = False
 
         st.markdown(
