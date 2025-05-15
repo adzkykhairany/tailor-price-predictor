@@ -38,3 +38,67 @@ div [data-testid="stBaseButton-secondaryFormSubmit"] {
     transition: 0.3s;
 }
 
+/* Catalog styles */
+.image-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.model-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0 5px 0;
+    color: #22223b;
+}
+
+.model-description {
+    font-size: 14px;
+    color: #4F4F4F;
+    line-height: 1.4;
+}
+
+.img-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+}
+
+.img-wrapper:hover {
+    transform: scale(1.02);
+}
+
+.katalog-title {
+    color: #22223b;
+    margin-bottom: 5px;
+}
+
+.katalog-subtitle {
+    color: #4a4e69;
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.simple-category {
+    color: #5e548e;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 6px;
+    display: inline-block;
+}
+
+.cta-box {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid #4361ee;
+}
+
+hr {
+    opacity: 0.2;
+}
+
