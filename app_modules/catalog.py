@@ -9,7 +9,7 @@ def load_css():
 
 load_css()
 
-st.markdown("<h1 class='katalog-title'>Katalog Model Pakaian</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='katalog-title'>Referensi Model Pakaian</h1>", unsafe_allow_html=True)
 st.markdown("<p class='katalog-subtitle'>Referensi model pakaian yang tersedia pada model prediksi harga dan waktu pengerjaan.</p>", unsafe_allow_html=True)
 
 model_data = [
