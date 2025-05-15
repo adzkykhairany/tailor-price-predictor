@@ -15,8 +15,6 @@ tailor-price-predictor/
 │   ├── style.css              # CSS styles for the app
 │   └── views/                 # Additional view components
 ├── data/                      # Directory for storing datasets
-│   ├── processed/             # Processed data ready for modeling
-│   └── raw/                   # Original data from tailors
 ├── models/                    # Directory for storing trained models
 │   ├── model_akhir.pkl        # Trained prediction model
 │   └── prediction_model.ipynb # Model training notebook
