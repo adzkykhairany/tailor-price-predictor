@@ -1,6 +1,2 @@
 __pycache__/
 *.pyc
-about.cpython-311.pyc
-prediction.cpython-311.pyc
-
-src/myenv/
