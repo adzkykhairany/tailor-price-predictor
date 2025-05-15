@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 import joblib
 import pandas as pd
+import math
 
 def load_css():
     with open("app_modules/style.css", "r") as f:
@@ -11,7 +12,7 @@ def load_css():
 load_css()
 
 loaded = joblib.load('models/model_akhir.pkl')
-model = loaded['model_predict']  # Extract the model from the dictionary
+model = loaded['model_predict']
 
 st.title("Prediksi Harga & Waktu")
 st.write(
@@ -26,6 +27,9 @@ st.sidebar.info(
 if 'form_submitted' not in st.session_state:
     st.session_state.form_submitted = False
 
+def round_to_nearest(value, base=500):
+    return int(base * round(float(value)/base))
+
 def predict(model, model_input, bahan_input, ornamen_input):
     df_input = pd.DataFrame([{
         'model': model_input,
@@ -37,7 +41,11 @@ def predict(model, model_input, bahan_input, ornamen_input):
     waktu_mean = pred[0]
     harga_mean = pred[1]
 
-    return int(round(waktu_mean)), int(round(harga_mean))
+    waktu = int(round(waktu_mean))
+    
+    harga = round_to_nearest(harga_mean, 500)
+
+    return waktu, harga
 
 def handle_submit():
     st.session_state.form_submitted = True

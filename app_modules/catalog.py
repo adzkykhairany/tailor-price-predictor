@@ -2,20 +2,16 @@ import streamlit as st
 from PIL import Image
 import os
 
-# Load CSS for custom styling
 def load_css():
     with open("app_modules/style.css", "r") as f:
         css = f.read()
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
-# Load CSS
 load_css()
 
-# Judul halaman dengan desain yang lebih menarik
 st.markdown("<h1 class='katalog-title'>Katalog Model Pakaian</h1>", unsafe_allow_html=True)
 st.markdown("<p class='katalog-subtitle'>Referensi model pakaian yang tersedia pada model prediksi harga dan waktu pengerjaan.</p>", unsafe_allow_html=True)
 
-# Model pakaian dan deskripsi
 model_data = [
     {
         "category": "Kebaya",
@@ -37,12 +33,12 @@ model_data = [
         "models": [
             {
                 "name": "Midi Dress",
-                "image": "images/midi_dress.png",  # Placeholder - replace with actual image
+                "image": "images/midi_dress.png", 
                 "description": "Gaun dengan panjang selutut atau betis, sering digunakan untuk acara semi-formal dan pesta."
             },
             {
                 "name": "Maxi Dress",
-                "image": "images/maxi_dress.png",  # Placeholder - replace with actual image
+                "image": "images/maxi_dress.png",
                 "description": "Gaun panjang hingga mata kaki dengan siluet yang memanjang, cocok untuk acara formal dan semi-formal."
             }
         ]
@@ -52,7 +48,7 @@ model_data = [
         "models": [
             {
                 "name": "Blus",
-                "image": "images/blus.png",  # Placeholder - replace with actual image
+                "image": "images/blus.png",
                 "description": "Atasan wanita yang dapat dipadukan dengan rok atau celana, tersedia dalam berbagai gaya dan potongan. Cocok digunakan untuk acara formal, semi-formal, maupun kasual sehari-hari."
             }
         ]
