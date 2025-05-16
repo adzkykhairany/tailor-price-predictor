@@ -14,15 +14,8 @@ tailoring-predictor/
 │   ├── prediction.py          # Price prediction logic and UI
 │   ├── catalog.py             # Clothing model catalog component
 │   ├── style.css              # CSS styles for the app
-│   └── __pycache__/           # Compiled Python files
 ├── data/                      # Directory for storing datasets
-│   └── data.csv               # Dataset used for model training
 ├── images/                    # Images of clothing models
-│   ├── blus.png               # Blouse reference image
-│   ├── kebaya_modern.png      # Modern kebaya reference image
-│   ├── kebaya_tradisional.png # Traditional kebaya reference image
-│   ├── maxi_dress.png         # Maxi dress reference image
-│   └── midi_dress.png         # Midi dress reference image
 ├── models/                    # Directory for storing trained models
 │   ├── model_akhir.pkl        # Trained prediction model
 │   └── prediction_model.ipynb # Model training notebook

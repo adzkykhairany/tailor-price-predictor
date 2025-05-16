@@ -20,7 +20,7 @@ st.write(
 
 st.sidebar.header(":material/keep: Panduan Pengisian")
 st.sidebar.info(
-    ":material/looks_one: Isi semua kolom input sesuai dengan kebutuhan jahitan Anda.\n\n"
+    ":material/looks_one: Isi semua kolom input sesuai dengan keinginan jahitan Anda.\n\n"
     ":material/looks_two: Klik tombol **Hitung Perkiraan** untuk mendapatkan estimasi biaya dan waktu."
 )
 
