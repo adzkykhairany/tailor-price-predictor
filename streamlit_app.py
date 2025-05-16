@@ -2,7 +2,7 @@ import streamlit as st
 
 # read css file
 def load_css():
-    with open("app_modules/style.css", "r") as f:
+    with open("views/style.css", "r") as f:
         css = f.read()
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
@@ -11,25 +11,25 @@ load_css()
 
 # sidebar
 about_page = st.Page(
-    page="app_modules/about.py",
+    page="views/about.py",
     title="Tentang Aplikasi",
-    icon=":material/info:",
-    default=True
+    icon=":material/info:"
 )
 
 prediction_page = st.Page(
-    page="app_modules/prediction.py",
+    page="views/prediction.py",
     title="Prediksi",
     icon=":material/batch_prediction:",
+    default=True
 ) 
 
 catalog_page = st.Page(
-    page="app_modules/catalog.py",
+    page="views/catalog.py",
     title="Model Pakaian",
-    icon=":material/laundry:",
+    icon=":material/laundry:"
 )
 
-pg = st.navigation(pages=[about_page, catalog_page, prediction_page])
+pg = st.navigation(pages=[prediction_page, catalog_page, about_page])
 pg.run()
 
 st.markdown(

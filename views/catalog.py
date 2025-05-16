@@ -3,14 +3,14 @@ from PIL import Image
 import os
 
 def load_css():
-    with open("app_modules/style.css", "r") as f:
+    with open("views/style.css", "r") as f:
         css = f.read()
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
 load_css()
 
-st.markdown("<h1 class='katalog-title'>Referensi Model Pakaian</h1>", unsafe_allow_html=True)
-st.markdown("<p class='katalog-subtitle'>Referensi model pakaian yang tersedia pada model prediksi harga dan waktu pengerjaan.</p>", unsafe_allow_html=True)
+st.markdown("<h1 class='catalog-title'>Referensi Model Pakaian</h1>", unsafe_allow_html=True)
+st.markdown("<p class='catalog-subtitle'>Referensi model pakaian yang tersedia pada model prediksi harga dan waktu pengerjaan.</p>", unsafe_allow_html=True)
 
 model_data = [
     {
@@ -94,7 +94,7 @@ for category in model_data:
             
             # Tampilkan nama dan deskripsi model dengan desain yang dipercantik
             st.markdown(f"<p class='model-name'>{model['name']}</p>", unsafe_allow_html=True)
-            st.markdown(f"<p class='model-description'>{model['description']}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p class='model-description; justified-text'>{model['description']}</p>", unsafe_allow_html=True)
             
             st.markdown("</div>", unsafe_allow_html=True)
     

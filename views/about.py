@@ -1,7 +1,7 @@
 import streamlit as st
 
 def load_css():
-    with open("app_modules/style.css", "r") as f:
+    with open("views/style.css", "r") as f:
         css = f.read()
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 

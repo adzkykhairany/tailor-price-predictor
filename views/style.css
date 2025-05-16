@@ -69,12 +69,12 @@ div [data-testid="stBaseButton-secondaryFormSubmit"] {
     transform: scale(1.02);
 }
 
-.katalog-title {
+.catalog-title {
     color: #22223b;
     margin-bottom: 5px;
 }
 
-.katalog-subtitle {
+.catalog-subtitle {
     color: #4a4e69;
     margin-bottom: 25px;
     font-size: 16px;
