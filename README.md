@@ -28,7 +28,7 @@ tailoring-predictor/
 ## 🚀 Live Demo & Installation
 
 ### 💻 Live Demo
-Try the live application here: [tailor-predictor](https://tailor-prediction.streamlit.app/)
+Try the live application here: [tailor-predictor](https://tailor-predictor.streamlit.app)
 
 ### 🛠️ Local Installation
 
