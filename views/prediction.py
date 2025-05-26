@@ -11,24 +11,28 @@ def load_css():
 
 load_css()
 
-loaded = joblib.load('models/model_akhir.pkl')
-model = loaded['model_predict']
+model = joblib.load('models/model_akhir.pkl')
 
 st.title("Prediksi Harga & Waktu")
 st.write(
     "Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan.")
 
-st.sidebar.header(":material/keep: Panduan Pengisian")
-st.sidebar.info(
-    ":material/looks_one: Isi semua kolom input sesuai dengan keinginan jahitan Anda.\n\n"
-    ":material/looks_two: Klik tombol **Hitung Perkiraan** untuk mendapatkan estimasi biaya dan waktu."
-)
+# Panduan pengisian dengan design cantik
+st.markdown("""
+<div class="info-box">
+    <div class="info-title"><b>Panduan Pengisian</b></div>
+    <div class="info-content">
+        <p><span class="info-number">1.</span><span style="margin-right:6px;"></span>Isi semua kolom input sesuai kebutuhan jahitan Anda</p>
+        <p><span class="info-number">2.</span><span style="margin-right:6px;"></span>Klik tombol<span style="margin-right:6px;"></span><b>Hitung Perkiraan</b><span style="margin-right:6px;"></span>untuk estimasi biaya dan waktu</p>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 if 'form_submitted' not in st.session_state:
     st.session_state.form_submitted = False
 
 def round_to_nearest(value, base=500):
-    return int(base * round(float(value)/base))
+    return round(value / base) * base
 
 def predict(model, model_input, bahan_input, ornamen_input):
     df_input = pd.DataFrame([{
@@ -37,15 +41,8 @@ def predict(model, model_input, bahan_input, ornamen_input):
         'ornamen': ornamen_input
     }])
 
-    pred = model.predict(df_input)[0]
-    waktu_mean = pred[0]
-    harga_mean = pred[1]
-
-    waktu = int(round(waktu_mean))
-    
-    harga = round_to_nearest(harga_mean, 500)
-
-    return waktu, harga
+    waktu_mean, harga_mean = model.predict(df_input)[0]
+    return round(waktu_mean), round_to_nearest(harga_mean)
 
 def handle_submit():
     st.session_state.form_submitted = True
