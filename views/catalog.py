@@ -9,8 +9,21 @@ def load_css():
 
 load_css()
 
-st.markdown("<h1 class='catalog-title'>Referensi Pakaian</h1>", unsafe_allow_html=True)
-st.markdown("<p class='catalog-subtitle'>Referensi model pakaian yang tersedia pada model prediksi harga dan waktu pengerjaan.</p>", unsafe_allow_html=True)
+st.markdown("<h1 class='catalog-title'>Referensi Model Pakaian</h1>", unsafe_allow_html=True)
+st.markdown("<p class='catalog-subtitle'>Contoh referensi model pakaian, jenis bahan, dan ornamen yang dapat dipadukan dalam pemilihan.</p>", unsafe_allow_html=True)
+
+# Fungsi untuk menampilkan gambar dengan kualitas HD
+def display_hd_image(image_path):
+    try:
+        if os.path.exists(image_path):
+            img = Image.open(image_path)
+            # Menampilkan gambar asli tanpa resizing otomatis
+            return img
+        else:
+            return None
+    except Exception as e:
+        st.error(f"Error membaca gambar: {e}")
+        return None
 
 model_data = [
     {
@@ -24,7 +37,7 @@ model_data = [
             {
                 "name": "Kebaya Modern",
                 "image": "images/kebaya_modern.png",
-                "description": "Kebaya dengan sentuhan modern, desain lebih variatif, modern, dan siluet yang lebih kontemporer namun tetap elegan."
+                "description": "Kebaya dengan sentuhan modern, desain lebih variatif dan siluet yang lebih kontemporer namun tetap elegan."
             }
         ]
     },
@@ -103,25 +116,13 @@ model_data = [
     }
 ]
 
-# Fungsi untuk menampilkan gambar dengan kualitas HD
-def display_hd_image(image_path):
-    try:
-        if os.path.exists(image_path):
-            img = Image.open(image_path)
-            # Menampilkan gambar asli tanpa resizing otomatis
-            return img
-        else:
-            return None
-    except Exception as e:
-        st.error(f"Error membaca gambar: {e}")
-        return None
-
 # Tampilkan model per kategori
 for category in model_data:
     # Adding less vertical space above categories
     st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
     st.markdown(f"<div class='simple-category'>{category['category']}</div>", unsafe_allow_html=True)
-      # Cek apakah kategori adalah info (bahan atau ornamen)
+    
+    # Cek apakah kategori adalah info (bahan atau ornamen)
     if category.get("is_info", False):
         # Tambahkan spasi di atas kategori info
         st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
@@ -157,7 +158,8 @@ for category in model_data:
                     st.markdown("</div>", unsafe_allow_html=True)
                 else:
                     st.error(f"Gambar tidak ditemukan: {model['image']}")
-                      # Tampilkan nama dan deskripsi model dengan desain yang dipercantik
+                
+                # Tampilkan nama dan deskripsi model dengan desain yang dipercantik
                 st.markdown(f"<p class='model-name'>{model['name']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<p class='model-description justified-text'>{model['description']}</p>", unsafe_allow_html=True)
                 
