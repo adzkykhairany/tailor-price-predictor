@@ -25,7 +25,7 @@ prediction_page = st.Page(
 
 catalog_page = st.Page(
     page="views/catalog.py",
-    title="Model Pakaian",
+    title="Referensi Pakaian",
     icon=":material/laundry:"
 )
 
