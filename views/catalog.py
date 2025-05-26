@@ -19,12 +19,12 @@ model_data = [
             {
                 "name": "Kebaya Tradisional",
                 "image": "images/kebaya_tradisional.png",
-                "description": "Model kebaya klasik dengan potongan longgar dan desain tradisional, biasa digunakan untuk acara formal dan adat."
+                "description": "Model kebaya klasik dengan desain tradisional, biasa digunakan untuk acara formal dan adat."
             },
             {
                 "name": "Kebaya Modern",
                 "image": "images/kebaya_modern.png",
-                "description": "Kebaya dengan sentuhan modern, desain lebih ramping dan siluet yang lebih kontemporer namun tetap elegan."
+                "description": "Kebaya dengan sentuhan modern, desain lebih variatif, modern, dan siluet yang lebih kontemporer namun tetap elegan."
             }
         ]
     },
@@ -38,7 +38,7 @@ model_data = [
             },
             {
                 "name": "Maxi Dress",
-                "image": "images/maxi_dress.png",
+                "image": "images/maxi.jpg",
                 "description": "Gaun panjang hingga mata kaki dengan siluet yang memanjang, cocok untuk acara formal dan semi-formal."
             }
         ]
@@ -93,7 +93,7 @@ model_data = [
             },
             {
                 "name": "Opneisel",
-                "description": "Teknik jahit berlubang (cutwork) dimana bagian kain digunting dan dibordir di sekeliling potongan. Tersedia dalam model tertutup (bagian lubang ditutup benang) atau terbuka."
+                "description": "Teknik jahit yang membentuk barisan lipatan rapi pada kain, dengan arah horizontal, vertikal, atau diagonal, untuk menambah dimensi dan tekstur halus pada pakaian."
             },
             {
                 "name": "Renda",
