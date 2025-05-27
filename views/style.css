@@ -134,3 +134,34 @@ hr {
     font-weight: bold;
     margin-right: 6px;
 }
+
+.estimation-box {
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.estimation-box b {
+    font-weight: bold; /* Opsional, karena <b> sudah bold secara default, tapi bagus untuk eksplisit */
+}
+
+.catalog-item-container {
+    background-color: #f9f9f9;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.catalog-item-name {
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: #333;
+    font-size: 16px;
+}
+
+.catalog-item-description {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    text-align: justify;
+}

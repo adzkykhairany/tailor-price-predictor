@@ -134,12 +134,14 @@ for category in model_data:
                 st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
                 
             with st.container():
-                st.markdown(f"""
-                <div style="background-color: #f9f9f9; padding: 12px 15px; border-radius: 5px; margin-bottom: 10px;">
-                    <p style="font-weight: 600; margin: 0 0 6px 0; color: #333; font-size: 16px;">{item['name']}</p>
-                    <p style="margin: 0; font-size: 14px; color: #555; text-align: justify;">{item['description']}</p>
-                </div>
-                """, unsafe_allow_html=True)
+                st.markdown(
+                    f"""
+                    <div class="catalog-item-container">
+                        <p class="catalog-item-name">{item['name']}</p>
+                        <p class="catalog-item-description">{item['description']}</p>
+                    </div>
+                    """,
+                    unsafe_allow_html=True)
     else:
         # Buat kolom berdasarkan jumlah model dalam kategori, minimal 2 kolom
         col_count = max(2, len(category["models"]))

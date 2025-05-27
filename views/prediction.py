@@ -140,7 +140,7 @@ if st.session_state.form_submitted:
 
         st.markdown(
             f"""
-            <div style="background-color:#f0f8ff;padding:10px;border-radius:5px;">
+            <div class="estimation-box">
                 🕒 <b>Estimasi waktu pengerjaan:</b> {waktu} hari<br>
                 💸 <b>Estimasi harga jasa:</b> Rp{harga:,}
             </div>
