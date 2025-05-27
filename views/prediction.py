@@ -22,8 +22,8 @@ st.markdown("""
 <div class="info-box">
     <div class="info-title"><b>Panduan Pengisian</b></div>
     <div class="info-content">
-        <p><span class="info-number">1.</span><span style="margin-right:6px;"></span>Isi semua kolom input sesuai kebutuhan jahitan Anda</p>
-        <p><span class="info-number">2.</span><span style="margin-right:6px;"></span>Klik tombol<span style="margin-right:6px;"></span><b>Hitung Perkiraan</b><span style="margin-right:6px;"></span>untuk estimasi biaya dan waktu</p>
+        <p><span class="info-number">1</span><span style="margin-right:6px;"></span>Isi semua kolom input sesuai kebutuhan jahitan Anda</p>
+        <p><span class="info-number">2</span><span style="margin-right:6px;"></span>Klik tombol<span style="margin-right:6px;"></span><b>Hitung Perkiraan</b><span style="margin-right:6px;"></span>untuk estimasi biaya dan waktu</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
