@@ -158,7 +158,7 @@ for category in model_data:
                     st.markdown(f"<p class='model-description justified-text'>{model['description']}</p>", unsafe_allow_html=True)
             
             if subcategory != category["subcategories"][-1]:
-                st.markdown("<hr style='margin: 15px 0; border: 1px solid #e2e8f0; opacity: 0.3;'>", unsafe_allow_html=True)
+                st.markdown("<div style='margin: 10px 0;'></div>", unsafe_allow_html=True)
     
     elif category.get("is_info", False):
         for i, item in enumerate(category["info_items"]):

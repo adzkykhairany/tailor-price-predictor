@@ -16,7 +16,7 @@ model = joblib.load('models/model_akhir.pkl')
 # Header
 st.markdown("""
     <div class="header-area">
-        <h1 class="header-title">Prediktor Jahit</h1>
+        <h1 class="header-title">Prediksi Jahitan</h1>
         <p class="header-subtitle">Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan. <a href="/catalog" style="color: #1976d2; text-decoration: none; font-weight: bold;">Lihat referensi pakaian</a></p>
     </div>
 """, unsafe_allow_html=True)
@@ -129,7 +129,6 @@ if st.session_state.form_submitted:
                 bahan_input=mapping_bahan[bahan_input],                ornamen_input=mapping_ornamen[ornamen_input]
             )
             st.session_state.form_submitted = False
-            st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
     
         st.markdown(f"""
             <div style="background-color: #f0f8ff; padding: 15px 18px; border-radius: 8px; margin-bottom: 0;">
