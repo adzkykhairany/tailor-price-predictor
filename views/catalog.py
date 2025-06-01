@@ -18,7 +18,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Fungsi untuk menampilkan gambar dengan kualitas HD
 def display_hd_image(image_path):
     try:
         if os.path.exists(image_path):
@@ -126,10 +125,8 @@ model_data = [
     }
 ]
 
-# Tampilkan model per kategori
-for category in model_data:    # Tambahkan margin lebih besar untuk kategori selain yang pertama
+for category in model_data:  
     if category != model_data[0]:
-        # Add more space before "Jenis Bahan" category
         if category['category'] == "Jenis Bahan":
             st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
         else:
@@ -137,18 +134,13 @@ for category in model_data:    # Tambahkan margin lebih besar untuk kategori sel
     else:
         st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
     
-    # Add ID for Model Pakaian category to target with CSS
     if category['category'] == "Model Pakaian":
         st.markdown(f"<div id='model-pakaian' class='simple-category'>{category['category']}</div>", unsafe_allow_html=True)
     else:
         st.markdown(f"<div class='simple-category'>{category['category']}</div>", unsafe_allow_html=True)
     
     if category.get("subcategories"):
-        # Ini adalah "Model Pakaian" dengan subkategori (tanpa judul subkategori)
         for subcategory in category["subcategories"]:
-            # Hapus margin untuk mengurangi jarak antara kategori dan gambar
-            # Subkategori title dihapus
-            
             col_count = max(2, len(subcategory["models"]))
             cols = st.columns(col_count)
             
@@ -165,14 +157,11 @@ for category in model_data:    # Tambahkan margin lebih besar untuk kategori sel
                     st.markdown(f"<p class='model-name'>{model['name']}</p>", unsafe_allow_html=True)
                     st.markdown(f"<p class='model-description justified-text'>{model['description']}</p>", unsafe_allow_html=True)
             
-            # Tambahkan pemisah setelah setiap subkategori kecuali yang terakhir
             if subcategory != category["subcategories"][-1]:
                 st.markdown("<hr style='margin: 15px 0; border: 1px solid #e2e8f0; opacity: 0.3;'>", unsafe_allow_html=True)
     
     elif category.get("is_info", False):
-        # Tidak perlu margin tambahan karena sudah ada dari category header
         for i, item in enumerate(category["info_items"]):
-            # Menambahkan margin yang sangat kecil untuk item pertama
             if i == 0:
                 st.markdown("<div style='margin-top: 2px;'></div>", unsafe_allow_html=True)
             else:
