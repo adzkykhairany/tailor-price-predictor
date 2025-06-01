@@ -1,22 +1,27 @@
-# tailor-price-predictor
+# tailoring-predictor
 
 🚀 **Status: Ready for Use** 🚀
 
 ## 📌 Description
-**tailor-price-predictor** is a machine learning application that predicts tailoring service prices and turnaround times, built with a user-friendly interface using Streamlit. The model uses Multiple Linear Regression with a multi-output approach to simultaneously predict both price and production time.
+**Tailoring Predictor** is a machine learning application that predicts tailoring service prices and turnaround times, built with a user-friendly interface using Streamlit. The model uses Multiple Linear Regression with a multi-output approach to simultaneously predict both price and production time.
 
 ## 📁 Project Structure
 ```
-tailor-price-predictor/
-├── app_modules/
+tailor-predictor/
+├── views/                     # View components
 │   ├── __init__.py            # Module initialization
 │   ├── about.py               # About page module
+│   ├── catalog.py             # Clothing reference catalog
 │   ├── prediction.py          # Price prediction logic
-│   ├── style.css              # CSS styles for the app
-│   └── views/                 # Additional view components
-├── data/                      # Directory for storing datasets
-│   ├── processed/             # Processed data ready for modeling
-│   └── raw/                   # Original data from tailors
+│   └── style.css              # CSS styles for the app
+├── data/                      # Directory for storing dataset
+│   └── data.csv               # Processed data used for modeling
+├── images/                    # Directory for reference images
+│   ├── blus.png               # Blouse reference image
+│   ├── kebaya_modern.png      # Modern kebaya reference image
+│   ├── kebaya_tradisional.png # Traditional kebaya reference image
+│   ├── maxi.jpg               # Maxi dress reference image
+│   └── midi_dress.png         # Midi dress reference image
 ├── models/                    # Directory for storing trained models
 │   ├── model_akhir.pkl        # Trained prediction model
 │   └── prediction_model.ipynb # Model training notebook
@@ -28,16 +33,22 @@ tailor-price-predictor/
 
 ## 🚀 Installation & Usage
 
-1. Clone the repository:
+1. **Option 1: Access online**
+   
+   Visit the deployed application at: [https://tailor-predictor.streamlit.app](https://tailor-predictor.streamlit.app)
+
+2. **Option 2: Run locally**
+
+   a. Clone the repository:
    ```bash
-   git clone https://github.com/adzkykhairany/tailor-price-predictor.git
-   cd tailor-price-predictor
+   git clone https://github.com/adzkykhairany/tailoring-predictor.git
+   cd tailoring-predictor
    ```
-2. Install dependencies:
+   b. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-3. Run the Streamlit application:
+   c. Run the Streamlit application:
    ```bash
    streamlit run streamlit_app.py
    ```

@@ -29,5 +29,5 @@ catalog_page = st.Page(
     icon=":material/laundry:"
 )
 
-pg = st.navigation(pages=[about_page, prediction_page, catalog_page])
+pg = st.navigation(pages=[about_page, catalog_page, prediction_page])
 pg.run()
