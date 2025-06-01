@@ -13,7 +13,7 @@ load_css()
 st.markdown("""
     <div class="header-area">
         <h1 class="header-title">Referensi Pakaian</h1>
-        <p class="header-subtitle">Contoh referensi model pakaian, jenis bahan, dan ornamen yang dapat dipadukan dalam pemilihan</p>
+        <p class="header-subtitle">Contoh referensi model pakaian, jenis bahan, dan ornamen yang dapat dipadukan dalam pemilihan.</p>
 
     </div>
 """, unsafe_allow_html=True)

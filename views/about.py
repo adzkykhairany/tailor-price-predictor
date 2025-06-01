@@ -12,7 +12,7 @@ load_css()
 st.markdown("""
     <div class="header-area">
         <h1 class="header-title">Tentang Aplikasi</h1>
-        <p class="header-subtitle">Ringkasan singkat menganai aplikasi perkiraan harga jasa dan estimasi waktu pengerjaan jasa jahit</p>
+        <p class="header-subtitle">Ringkasan singkat menganai aplikasi perkiraan harga jasa dan estimasi waktu pengerjaan jasa jahit.</p>
 
     </div>
 """, unsafe_allow_html=True)
@@ -67,7 +67,7 @@ st.markdown("""
         <h3 class="section-title"><span>📝</span>Panduan Penggunaan</h3>
         <div class="content-card">
             <p class="section-description">
-                Ikuti langkah-langkah di bawah untuk memperkirakan harga dan estimas waktu pengerjaan layanan jahit pada halaman <a href="/" style="color:#1976d2; text-decoration: none; font-weight: bold;">Prediksi</a>:
+                Ikuti langkah-langkah di bawah untuk memperkirakan harga dan estimas waktu pengerjaan layanan jahit pada halaman <a href="/prediction" style="color:#1976d2; text-decoration: none; font-weight: bold;">Prediksi</a>:
             </p>
             <div class="info-grid">
                 <div class="info-item">

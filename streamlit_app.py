@@ -13,14 +13,14 @@ load_css()
 about_page = st.Page(
     page="views/about.py",
     title="Tentang Aplikasi",
-    icon=":material/info:"
+    icon=":material/info:",
+    default=True
 )
 
 prediction_page = st.Page(
     page="views/prediction.py",
     title="Prediksi",
     icon=":material/batch_prediction:",
-    default=True
 ) 
 
 catalog_page = st.Page(
@@ -29,10 +29,5 @@ catalog_page = st.Page(
     icon=":material/laundry:"
 )
 
-pg = st.navigation(pages=[prediction_page, catalog_page, about_page])
+pg = st.navigation(pages=[about_page, prediction_page, catalog_page])
 pg.run()
-
-# st.markdown(
-#     "<hr><div class='copyright'>© 2025 Athiyya Adzky Khairany.</div>",
-#     unsafe_allow_html=True
-# )

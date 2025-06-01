@@ -17,7 +17,7 @@ model = joblib.load('models/model_akhir.pkl')
 st.markdown("""
     <div class="header-area">
         <h1 class="header-title">Prediktor Jahit</h1>
-        <p class="header-subtitle">Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan</p>
+        <p class="header-subtitle">Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan. <a href="/catalog" style="color: #1976d2; text-decoration: none; font-weight: bold;">Lihat referensi pakaian</a></p>
     </div>
 """, unsafe_allow_html=True)
 
