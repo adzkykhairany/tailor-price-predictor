@@ -32,7 +32,7 @@ catalog_page = st.Page(
 pg = st.navigation(pages=[prediction_page, catalog_page, about_page])
 pg.run()
 
-st.markdown(
-    "<hr><div class='copyright'>© 2025 Athiyya Adzky Khairany.</div>",
-    unsafe_allow_html=True
-)
+# st.markdown(
+#     "<hr><div class='copyright'>© 2025 Athiyya Adzky Khairany.</div>",
+#     unsafe_allow_html=True
+# )

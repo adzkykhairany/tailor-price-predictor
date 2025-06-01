@@ -9,15 +9,20 @@ def load_css():
 
 load_css()
 
-st.markdown("<h1 class='catalog-title'>Referensi Pakaian</h1>", unsafe_allow_html=True)
-st.markdown("<p class='catalog-subtitle'>Contoh referensi model pakaian, jenis bahan, dan ornamen yang dapat dipadukan dalam pemilihan.</p>", unsafe_allow_html=True)
+# Header
+st.markdown("""
+    <div class="header-area">
+        <h1 class="header-title">Referensi Pakaian</h1>
+        <p class="header-subtitle">Contoh referensi model pakaian, jenis bahan, dan ornamen yang dapat dipadukan dalam pemilihan</p>
+
+    </div>
+""", unsafe_allow_html=True)
 
 # Fungsi untuk menampilkan gambar dengan kualitas HD
 def display_hd_image(image_path):
     try:
         if os.path.exists(image_path):
             img = Image.open(image_path)
-            # Menampilkan gambar asli tanpa resizing otomatis
             return img
         else:
             return None
@@ -27,42 +32,47 @@ def display_hd_image(image_path):
 
 model_data = [
     {
-        "category": "Kebaya",
-        "models": [
+        "category": "Model Pakaian",
+        "subcategories": [
             {
-                "name": "Kebaya Tradisional",
-                "image": "images/kebaya_tradisional.png",
-                "description": "Model kebaya klasik dengan desain tradisional, biasa digunakan untuk acara formal dan adat."
+                "name": "Kebaya",
+                "models": [
+                    {
+                        "name": "Kebaya Tradisional",
+                        "image": "images/kebaya_tradisional.png",
+                        "description": "Model kebaya klasik dengan desain tradisional, biasa digunakan untuk acara formal dan adat."
+                    },
+                    {
+                        "name": "Kebaya Modern",
+                        "image": "images/kebaya_modern.png",
+                        "description": "Kebaya dengan sentuhan modern, desain lebih variatif dan siluet yang lebih kontemporer namun tetap elegan."
+                    }
+                ]
             },
             {
-                "name": "Kebaya Modern",
-                "image": "images/kebaya_modern.png",
-                "description": "Kebaya dengan sentuhan modern, desain lebih variatif dan siluet yang lebih kontemporer namun tetap elegan."
-            }
-        ]
-    },
-    {
-        "category": "Dress",
-        "models": [
-            {
-                "name": "Midi Dress",
-                "image": "images/midi_dress.png", 
-                "description": "Gaun dengan panjang selutut atau betis, sering digunakan untuk acara semi-formal dan pesta."
+                "name": "Dress",
+                "models": [
+                    {
+                        "name": "Midi Dress",
+                        "image": "images/midi_dress.png", 
+                        "description": "Gaun dengan panjang selutut atau betis, sering digunakan untuk acara semi-formal dan pesta."
+                    },
+                    {
+                        "name": "Maxi Dress",
+                        "image": "images/maxi.jpg",
+                        "description": "Gaun panjang hingga mata kaki dengan siluet yang memanjang, cocok untuk acara formal dan semi-formal."
+                    }
+                ]
             },
-            {
-                "name": "Maxi Dress",
-                "image": "images/maxi.jpg",
-                "description": "Gaun panjang hingga mata kaki dengan siluet yang memanjang, cocok untuk acara formal dan semi-formal."
-            }
-        ]
-    },
-    {
-        "category": "Blus",
-        "models": [
             {
                 "name": "Blus",
-                "image": "images/blus.png",
-                "description": "Atasan wanita yang dapat dipadukan dengan rok atau celana, tersedia dalam berbagai gaya dan potongan. Cocok digunakan untuk acara formal, semi-formal, maupun kasual sehari-hari."
+                "models": [
+                    {
+                        "name": "Blus",
+                        "image": "images/blus.png",
+                        "description": "Atasan wanita yang dapat dipadukan dengan rok atau celana, tersedia dalam berbagai gaya dan potongan. Cocok digunakan untuk acara formal, semi-formal, maupun kasual sehari-hari."
+                    }
+                ]
             }
         ]
     },
@@ -117,55 +127,78 @@ model_data = [
 ]
 
 # Tampilkan model per kategori
-for category in model_data:
-    # Adding less vertical space above categories
-    st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='simple-category'>{category['category']}</div>", unsafe_allow_html=True)
+for category in model_data:    # Tambahkan margin lebih besar untuk kategori selain yang pertama
+    if category != model_data[0]:
+        # Add more space before "Jenis Bahan" category
+        if category['category'] == "Jenis Bahan":
+            st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
+        else:
+            st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
+    else:
+        st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
     
-    # Cek apakah kategori adalah info (bahan atau ornamen)
-    if category.get("is_info", False):
-        # Tambahkan spasi di atas kategori info
-        st.markdown("<div style='margin-top: 15px;'></div>", unsafe_allow_html=True)
-        
-        # Tampilkan info item dalam format list card
+    # Add ID for Model Pakaian category to target with CSS
+    if category['category'] == "Model Pakaian":
+        st.markdown(f"<div id='model-pakaian' class='simple-category'>{category['category']}</div>", unsafe_allow_html=True)
+    else:
+        st.markdown(f"<div class='simple-category'>{category['category']}</div>", unsafe_allow_html=True)
+    
+    if category.get("subcategories"):
+        # Ini adalah "Model Pakaian" dengan subkategori (tanpa judul subkategori)
+        for subcategory in category["subcategories"]:
+            # Hapus margin untuk mengurangi jarak antara kategori dan gambar
+            # Subkategori title dihapus
+            
+            col_count = max(2, len(subcategory["models"]))
+            cols = st.columns(col_count)
+            
+            for i, model in enumerate(subcategory["models"]):
+                with cols[i]:
+                    img = display_hd_image(model["image"])
+                    if img:                    
+                        st.markdown(f"<div class='img-wrapper'>", unsafe_allow_html=True)
+                        st.image(img, use_container_width=True, output_format="PNG")
+                        st.markdown("</div>", unsafe_allow_html=True)
+                    else:                
+                        st.error(f"Gambar tidak ditemukan: {model['image']}")
+                    
+                    st.markdown(f"<p class='model-name'>{model['name']}</p>", unsafe_allow_html=True)
+                    st.markdown(f"<p class='model-description justified-text'>{model['description']}</p>", unsafe_allow_html=True)
+            
+            # Tambahkan pemisah setelah setiap subkategori kecuali yang terakhir
+            if subcategory != category["subcategories"][-1]:
+                st.markdown("<hr style='margin: 15px 0; border: 1px solid #e2e8f0; opacity: 0.3;'>", unsafe_allow_html=True)
+    
+    elif category.get("is_info", False):
+        # Tidak perlu margin tambahan karena sudah ada dari category header
         for i, item in enumerate(category["info_items"]):
-            # Tambahkan spasi tambahan sebelum item pertama
+            # Menambahkan margin yang sangat kecil untuk item pertama
             if i == 0:
-                st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
+                st.markdown("<div style='margin-top: 2px;'></div>", unsafe_allow_html=True)
+            else:
+                st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
                 
             with st.container():
                 st.markdown(
                     f"""
                     <div class="catalog-item-container">
                         <p class="catalog-item-name">{item['name']}</p>
-                        <p class="catalog-item-description">{item['description']}</p>
-                    </div>
+                        <p class="catalog-item-description">{item['description']}</p></div>
                     """,
                     unsafe_allow_html=True)
     else:
-        # Buat kolom berdasarkan jumlah model dalam kategori, minimal 2 kolom
         col_count = max(2, len(category["models"]))
         cols = st.columns(col_count)
         
         for i, model in enumerate(category["models"]):
             with cols[i]:
-                st.markdown(f"<div class='image-container'>", unsafe_allow_html=True)
-                
-                # Tampilkan gambar dengan kualitas HD
                 img = display_hd_image(model["image"])
-                if img:
+                if img:                    
                     st.markdown(f"<div class='img-wrapper'>", unsafe_allow_html=True)
-                    # Gunakan quality=100 untuk memastikan kualitas maksimum
                     st.image(img, use_container_width=True, output_format="PNG")
                     st.markdown("</div>", unsafe_allow_html=True)
-                else:
+                else:                    
                     st.error(f"Gambar tidak ditemukan: {model['image']}")
                 
-                # Tampilkan nama dan deskripsi model dengan desain yang dipercantik
                 st.markdown(f"<p class='model-name'>{model['name']}</p>", unsafe_allow_html=True)
                 st.markdown(f"<p class='model-description justified-text'>{model['description']}</p>", unsafe_allow_html=True)
-                
-                st.markdown("</div>", unsafe_allow_html=True)
-    
-    # Using a slimmer horizontal line with less margin for category separation
-    st.markdown("<hr style='margin: 10px 0; opacity: 0.1;'>", unsafe_allow_html=True)

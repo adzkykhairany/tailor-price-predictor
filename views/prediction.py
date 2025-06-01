@@ -13,19 +13,12 @@ load_css()
 
 model = joblib.load('models/model_akhir.pkl')
 
-st.title("Prediksi Harga & Waktu")
-st.write(
-    "Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan.")
-
-# Panduan pengisian dengan design cantik
+# Header
 st.markdown("""
-<div class="info-box">
-    <div class="info-title"><b>Panduan Pengisian</b></div>
-    <div class="info-content">
-        <p><span class="info-number">1</span><span style="margin-right:6px;"></span>Isi semua kolom input sesuai kebutuhan jahitan Anda</p>
-        <p><span class="info-number">2</span><span style="margin-right:6px;"></span>Klik tombol<span style="margin-right:6px;"></span><b>Hitung Perkiraan</b><span style="margin-right:6px;"></span>untuk estimasi biaya dan waktu</p>
+    <div class="header-area">
+        <h1 class="header-title">Prediktor Jahit</h1>
+        <p class="header-subtitle">Dapatkan estimasi harga jasa jahit dan waktu pengerjaan berdasarkan model pakaian, jenis bahan, dan ornamen tambahan yang anda inginkan</p>
     </div>
-</div>
 """, unsafe_allow_html=True)
 
 if 'form_submitted' not in st.session_state:
@@ -54,20 +47,20 @@ with st.form("input_form", clear_on_submit=False):
         index=0,
         help="Pilih model pakaian yang sesuai dengan kebutuhan Anda."
     )
-
+    
     if st.session_state.form_submitted and model_input == "Pilih Model Pakaian":
-        st.markdown('<p class="error-message">⚠ Harap pilih model pakaian.</p>', unsafe_allow_html=True)
-
+        st.markdown('<p class="error-message"><span style="color: #ef4444;">⚠</span> Harap pilih model pakaian.</p>', unsafe_allow_html=True)
+    
     bahan_input = st.selectbox(
         "🧵 Jenis Bahan", 
         ["Pilih Jenis Bahan", "Katun", "Sutra", "Brokat", "Sifon", "Satin"],
         index=0,
         help="Pilih jenis bahan yang akan digunakan."
     )
-
+    
     if st.session_state.form_submitted and bahan_input == "Pilih Jenis Bahan":
-        st.markdown('<p class="error-message">⚠ Harap pilih jenis bahan.</p>', unsafe_allow_html=True)
-
+        st.markdown('<p class="error-message"><span style="color: #ef4444;">⚠</span> Harap pilih jenis bahan.</p>', unsafe_allow_html=True)
+    
     ornamen_input = st.selectbox(
         "✨ Ornamen Tambahan", 
         ["Pilih Ornamen", "Tanpa Ornamen", "Bordir Kecil", "Bordir Sedang", "Bordir Besar", "Bordir Tempel", 
@@ -76,9 +69,9 @@ with st.form("input_form", clear_on_submit=False):
         index=0,
         help="Pilih ornamen tambahan untuk pakaian Anda."
     )
-
+    
     if st.session_state.form_submitted and ornamen_input == "Pilih Ornamen":
-        st.markdown('<p class="error-message">⚠ Harap pilih ornamen tambahan.</p>', unsafe_allow_html=True)
+        st.markdown('<p class="error-message"><span style="color: #ef4444;">⚠</span> Harap pilih ornamen tambahan.</p>', unsafe_allow_html=True)
 
     submit = st.form_submit_button(
         "Hitung Perkiraan", 
@@ -128,22 +121,19 @@ if st.session_state.form_submitted:
             "Payet Motif Sedang": "Payet Motif Sedang", 
             "Payet Motif Besar": "Payet Motif Besar"
         }
-
+        
         with st.spinner("⏳ Sedang menghitung estimasi..."):
             waktu, harga = predict(
                 model=model,
                 model_input=mapping_model[model_input],
-                bahan_input=mapping_bahan[bahan_input],
-                ornamen_input=mapping_ornamen[ornamen_input]
+                bahan_input=mapping_bahan[bahan_input],                ornamen_input=mapping_ornamen[ornamen_input]
             )
             st.session_state.form_submitted = False
-
-        st.markdown(
-            f"""
-            <div class="estimation-box">
-                🕒 <b>Estimasi waktu pengerjaan:</b> {waktu} hari<br>
-                💸 <b>Estimasi harga jasa:</b> Rp{harga:,}
+            st.markdown("<div style='margin-top: 5px;'></div>", unsafe_allow_html=True)
+    
+        st.markdown(f"""
+            <div style="background-color: #f0f8ff; padding: 15px 18px; border-radius: 8px; margin-bottom: 0;">
+                <p style="margin: 0 0 6px 0;">🕒 <strong>Estimasi waktu pengerjaan:</strong> {waktu} hari</p>
+                <p style="margin: 0;">💸 <strong>Estimasi harga jasa:</strong> Rp{harga:,}</p>
             </div>
-            """,
-            unsafe_allow_html=True
-        )
+        """, unsafe_allow_html=True)
