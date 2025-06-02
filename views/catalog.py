@@ -58,7 +58,7 @@ model_data = [
                     },
                     {
                         "name": "Maxi Dress",
-                        "image": "images/maxi.jpg",
+                        "image": "images/maxi_dress.png",
                         "description": "Gaun panjang hingga mata kaki dengan siluet yang memanjang, cocok untuk acara formal dan semi-formal."
                     }
                 ]
