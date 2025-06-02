@@ -54,12 +54,12 @@ model_data = [
                     {
                         "name": "Midi Dress",
                         "image": "images/midi_dress.png", 
-                        "description": "Gaun dengan panjang selutut atau betis, sering digunakan untuk acara semi-formal dan pesta."
+                        "description": "Gaun dengan panjang yang jatuh di bawah lutut namun tidak mencapai mata kaki, sering dipilih untuk acara semi-formal dan pesta karena tampilannya yang anggun dan nyaman."
                     },
                     {
                         "name": "Maxi Dress",
                         "image": "images/maxi_dress.png",
-                        "description": "Gaun panjang hingga mata kaki dengan siluet yang memanjang, cocok untuk acara formal dan semi-formal."
+                        "description": "Gaun panjang dengan potongan yang menjuntai hingga mata kaki atau bahkan menyentuh lantai. Memiliki siluet memanjang yang memberikan kesan anggun, sehingga sering digunakan untuk acara formal maupun semi-formal."
                     }
                 ]
             },
