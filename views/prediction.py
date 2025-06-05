@@ -62,7 +62,7 @@ with st.form("input_form", clear_on_submit=False):
         st.markdown('<p class="error-message"><span style="color: #ef4444;">⚠</span> Harap pilih jenis bahan.</p>', unsafe_allow_html=True)
     
     ornamen_input = st.selectbox(
-        "✨ Ornamen Tambahan", 
+        "💎 Ornamen Tambahan", 
         ["Pilih Ornamen", "Tanpa Ornamen", "Bordir Kecil", "Bordir Sedang", "Bordir Besar", "Bordir Tempel", 
          "Renda", "Opneisel Tertutup", "Opneisel Terbuka", "Payet Aksen Kecil", "Payet Aksen Sedang", 
          "Payet Aksen Besar", "Payet Motif Sedang", "Payet Motif Besar"],
