@@ -126,12 +126,13 @@ if st.session_state.form_submitted:
             waktu, harga = predict(
                 model=model,
                 model_input=mapping_model[model_input],
-                bahan_input=mapping_bahan[bahan_input],                ornamen_input=mapping_ornamen[ornamen_input]
+                bahan_input=mapping_bahan[bahan_input],                
+                ornamen_input=mapping_ornamen[ornamen_input]
             )
             st.session_state.form_submitted = False
     
         st.markdown(f"""
-            <div style="background-color: #f0f8ff; padding: 15px 18px; border-radius: 8px; margin-bottom: 0;">
+            <div class="prediction-result">
                 <p style="margin: 0 0 6px 0;">🕒 <strong>Estimasi waktu pengerjaan:</strong> {waktu} hari</p>
                 <p style="margin: 0;">💸 <strong>Estimasi harga jasa:</strong> Rp{harga:,}</p>
             </div>

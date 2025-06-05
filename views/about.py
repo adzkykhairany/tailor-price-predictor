@@ -5,7 +5,6 @@ def load_css():
         css = f.read()
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
 
-# Load CSS from style.css
 load_css()
 
 # Header
@@ -87,9 +86,9 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Footer dengan info kontak yang lebih minimalis
+# Footer
 st.markdown("""
-    <div class="minimalist-footer">
+    <div class="footer-area">
         <div class="footer-links" style="margin-bottom: 5px;">
             <span>Tailor Predictor v1.0</span>
             <a href="https://github.com/adzkykhairany/tailoring-predictor" target="_blank">GitHub</a>
